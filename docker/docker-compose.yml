@@ -1,0 +1,49 @@
+services:
+  django:
+    build: python
+    command:
+      - bash
+      - -c
+      - "python -m venv appenv \
+        && source appenv/bin/activate \
+        && /app/appenv/bin/python -m pip install --upgrade pip \
+        && pip install -r requirements.txt \
+        && python djangoProject/manage.py migrate \
+        && python djangoProject/manage.py collectstatic --no-input \
+        && gunicorn -b 0.0.0.0:8000 --chdir djangoProject djangoProject.wsgi"
+    volumes:
+      - ..:/app
+    working_dir: /app
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - DJANGO_DATABASE_NAME=${DJANGO_DATABASE_NAME}
+      - DJANGO_DATABASE_USER=${DJANGO_DATABASE_USER}
+      - DJANGO_DATABASE_PASSWORD=${DJANGO_DATABASE_PASSWORD}
+      - DJANGO_DATABASE_HOST=${DJANGO_DATABASE_HOST}
+      - DJANGO_DATABASE_PORT=${DJANGO_DATABASE_PORT}
+      - DJANGO_CACHE_LOCATION=${DJANGO_CACHE_LOCATION}
+    depends_on:
+      - mysql
+      - redis
+  mysql:
+    image: mysql:8.0.29
+    volumes:
+      - ../mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DJANGO_DATABASE_NAME}
+      - MYSQL_USER=${DJANGO_DATABASE_USER}
+      - MYSQL_PASSWORD=${DJANGO_DATABASE_PASSWORD}
+    ports:
+      - 3306:3306
+  redis:
+    image: redis:7.0.2
+  nginx:
+    build: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ../static:/static
+    depends_on:
+      - django
