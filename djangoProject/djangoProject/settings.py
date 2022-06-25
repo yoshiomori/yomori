@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG') == 'True'
+DEBUG = os.environ.get('DEBUG') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['DJANGO_DATABASE_NAME'],
-        'USER': os.environ['DJANGO_DATABASE_USER'],
-        'PASSWORD': os.environ['DJANGO_DATABASE_PASSWORD'],
-        'HOST': os.environ['DJANGO_DATABASE_HOST'],
-        'PORT': os.environ['DJANGO_DATABASE_PORT'],
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': os.environ['DATABASE_PORT'],
     }
 }
 
@@ -131,6 +131,18 @@ STATIC_ROOT = 'static'
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': os.environ['DJANGO_CACHE_LOCATION'],
+        'LOCATION': os.environ['CACHE_LOCATION'],
     }
 }
+
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1']
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS') == 'True'
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL') == 'True'
+EMAIL_TIMEOUT = os.environ.get('EMAIL_TIMEOUT')
+EMAIL_SSL_KEYFILE = os.environ.get('EMAIL_SSL_KEYFILE')
+EMAIL_SSL_CERTFILE = os.environ.get('EMAIL_SSL_CERTFILE')
