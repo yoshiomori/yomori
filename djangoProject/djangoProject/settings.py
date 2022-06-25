@@ -146,3 +146,19 @@ EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL') == 'True'
 EMAIL_TIMEOUT = os.environ.get('EMAIL_TIMEOUT')
 EMAIL_SSL_KEYFILE = os.environ.get('EMAIL_SSL_KEYFILE')
 EMAIL_SSL_CERTFILE = os.environ.get('EMAIL_SSL_CERTFILE')
+
+ADMINS = [(os.environ['FIRST_ADMIN_NAME'], os.environ['FIRST_ADMIN_EMAIL'])]
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'mail_admins': {
+            'level': 'INFO',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        },
+    },
+    'root': {
+        'handlers': ['mail_admins'],
+    },
+}
