@@ -151,6 +151,7 @@ ADMINS = [(os.environ['FIRST_ADMIN_NAME'], os.environ['FIRST_ADMIN_EMAIL'])]
 
 LOGGING = {
     'version': 1,
+    'disable_existing_loggers': False,
     'handlers': {
         'mail_admins': {
             'level': 'INFO',
