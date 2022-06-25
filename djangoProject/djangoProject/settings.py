@@ -146,3 +146,5 @@ EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL') == 'True'
 EMAIL_TIMEOUT = os.environ.get('EMAIL_TIMEOUT')
 EMAIL_SSL_KEYFILE = os.environ.get('EMAIL_SSL_KEYFILE')
 EMAIL_SSL_CERTFILE = os.environ.get('EMAIL_SSL_CERTFILE')
+
+MANAGERS = [(os.environ['FIRST_MANAGER_NAME'], os.environ['FIRST_MANAGER_EMAIL'])]
