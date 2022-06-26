@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path, include
 
+from portifolio.views import AppListView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('passwordManager/', include('passwordManager.urls')),
     path('accounts/login/', LoginView.as_view(next_page="passwordManager:list"), name="login"),
     path('accounts/logout/', LogoutView.as_view(next_page="login"), name="logout"),
+    path('', AppListView.as_view(), name="index"),
 ]
