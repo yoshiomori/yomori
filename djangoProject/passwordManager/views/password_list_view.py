@@ -1,12 +1,13 @@
-from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
 from passwordManager.filters.passwordFilter import PasswordFilter
 from passwordManager.models import Password
 
 
-class PasswordListView(generic.ListView):
+class PasswordListView(LoginRequiredMixin, generic.ListView):
     model = Password
+    title = 'Password Manager'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -23,22 +24,3 @@ class PasswordListView(generic.ListView):
 
     def get_queryset(self):
         return self.password_filter.filter_queryset(super().get_queryset())
-
-
-class PasswordDetailView(generic.DetailView):
-    model = Password
-
-
-class PasswordCreateView(generic.CreateView):
-    model = Password
-    fields = '__all__'
-
-
-class PasswordUpdateView(generic.UpdateView):
-    model = Password
-    fields = '__all__'
-
-
-class PasswordDeleteView(generic.DeleteView):
-    model = Password
-    success_url = reverse_lazy('passwordManager:list')
