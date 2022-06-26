@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.views import generic
 
 from passwordManager.filters.passwordFilter import PasswordFilter
@@ -23,4 +24,4 @@ class PasswordListView(LoginRequiredMixin, generic.ListView):
         return super().get_context_data(filter=self.password_filter, **kwargs)
 
     def get_queryset(self):
-        return self.password_filter.filter_queryset(super().get_queryset())
+        return self.password_filter.filter_queryset(super().get_queryset().filter(Q(user=self.request.user)))
