@@ -6,5 +6,9 @@ from passwordManager.models import Password
 
 class PasswordCreateView(LoginRequiredMixin, generic.CreateView):
     model = Password
-    fields = '__all__'
+    fields = ['password', 'username', 'description', 'title']
     title = 'New Password'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

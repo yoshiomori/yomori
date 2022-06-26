@@ -6,5 +6,5 @@ from passwordManager.models import Password
 
 class PasswordUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Password
-    fields = '__all__'
+    fields = ['password', 'username', 'description', 'title']
     title = 'Update Password'
