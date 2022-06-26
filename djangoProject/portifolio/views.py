@@ -5,3 +5,4 @@ from portifolio.models import App
 
 class AppListView(generic.ListView):
     model = App
+    title = 'YoMoRi'
