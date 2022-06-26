@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from portifolio.views import AppListView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', AppListView.as_view(), name="index"),
 ]
