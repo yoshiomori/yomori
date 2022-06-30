@@ -1,4 +1,6 @@
-static
-mysql
-appenv
-.idea
+/static
+/mysql
+/appenv
+/.idea
+package-lock.json
+node_modules
