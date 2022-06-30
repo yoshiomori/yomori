@@ -10,7 +10,6 @@ services:
         && pip install -r requirements.txt \
         && python djangoProject/manage.py migrate \
         && python djangoProject/manage.py collectstatic --no-input \
-        && python djangoProject/manage.py loaddata app.json \
         && gunicorn -b 0.0.0.0:8000 --chdir djangoProject djangoProject.wsgi"
     volumes:
       - ..:/app
