@@ -1,4 +1,12 @@
 services:
+  node:
+    image: node:18.4.0
+    command:
+      - npm
+      - install
+    volumes:
+      - ../nodeProject:/app
+    working_dir: /app
   django:
     build: python
     command:
@@ -33,6 +41,7 @@ services:
     depends_on:
       - mysql
       - redis
+      - node
   mysql:
     image: mysql:8.0.29
     volumes:
