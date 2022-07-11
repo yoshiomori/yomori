@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
-    'node_modules/bootstrap/dist'
+    'nodeProject/node_modules/bootstrap/dist'
 ]
 
 # Default primary key field type
