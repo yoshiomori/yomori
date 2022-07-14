@@ -2,5 +2,5 @@
 /mysql
 /appenv
 /.idea
-package-lock.json
-node_modules
+/nodeProject/package-lock.json
+/nodeProject/node_modules
