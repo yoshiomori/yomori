@@ -124,7 +124,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
-    'nodeProject/node_modules/bootstrap/dist'
+    'nodeProject/node_modules/bootstrap/dist',
+    os.path.join(BASE_DIR, 'static')
 ]
 
 # Default primary key field type
