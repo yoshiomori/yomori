@@ -58,7 +58,7 @@ services:
   nginx:
     build: nginx
     ports:
-      - 80:80
+      - 0.0.0.0:80:80
     volumes:
       - ../static:/static
     depends_on:
