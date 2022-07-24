@@ -43,7 +43,7 @@ services:
       - redis
       - node
   mysql:
-    image: mysql:8.0.29
+    build: mysql
     volumes:
       - ../mysql:/var/lib/mysql
     environment:
@@ -54,7 +54,7 @@ services:
     ports:
       - 3306:3306
   redis:
-    image: redis:7.0.2
+    build: redis
   nginx:
     build: nginx
     ports:

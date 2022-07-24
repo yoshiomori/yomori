@@ -1,3 +1,2 @@
-FROM python:3.8
-RUN pip install --upgrade pip
+FROM mysql:8.0.29
 RUN /bin/ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
