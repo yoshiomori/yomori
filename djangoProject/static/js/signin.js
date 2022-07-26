@@ -8,7 +8,6 @@ var usernameInput = document.getElementById('id_username');
 html.classList.add('h-100');
 
 body.classList.add('h-100');
-body.classList.add('text-center');
 
 for(var index=0; index<tableHtmlCollection.length; index++){
     var tableNode = tableHtmlCollection.item(index);
