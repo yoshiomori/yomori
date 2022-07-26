@@ -3,17 +3,27 @@
 {% block title %}Login{% endblock %}
 {% block head %}
 <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+<link href="{% static 'css/dark-menubar.css' %}" rel="stylesheet">
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-<main class="form-signin w-100 m-auto">
-    <form method="post" id="form">
-        {% csrf_token %}
-        <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
-        <table id="formTable">
-            {{ form }}
-        </table>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-    </form>
-</main>
-<script src="{% static 'js/signin.js' %}"></script>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    {% include "menubar.html" %}
+    <main class="px-3">
+        <form method="post" id="form" class="form-signin w-100 m-auto">
+            {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+            <table id="formTable">
+                {{ form }}
+            </table>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        </form>
+    </main>
+
+    <footer class="mt-auto text-white-50">
+        <p>Login template by <a
+                href="https://twitter.com/YoshioMori9" class="text-white">@YoshioMori9</a>.</p>
+    </footer>
+    <script src="{% static 'js/signin.js' %}"></script>
+</div>
 {% endblock %}

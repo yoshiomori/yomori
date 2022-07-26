@@ -1,6 +1,14 @@
+var html = document.getElementsByTagName('html').item(0);
 var body = document.getElementsByTagName('body').item(0);
 var form = document.getElementById('form');
 var tableHtmlCollection = form.getElementsByTagName('table');
+var a = document.getElementById('login-menu');
+var usernameInput = document.getElementById('id_username');
+
+html.classList.add('h-100');
+
+body.classList.add('h-100');
+body.classList.add('text-center');
 
 for(var index=0; index<tableHtmlCollection.length; index++){
     var tableNode = tableHtmlCollection.item(index);
@@ -32,7 +40,7 @@ for(var index=0; index<tableHtmlCollection.length; index++){
     body.appendChild(toastContainer);
 
     inputNodeList.forEach((inputNode, i)=>{
-        var errorUlNodeList = inputNode.parentNode.querySelectorAll('ul.errorlist');;
+        var errorUlNodeList = inputNode.parentNode.querySelectorAll('ul.errorlist');
         var labelNode = labelNodeList.item(i);
         currentDiv.classList.add('form-floating');
         inputNode.classList.add('form-control');
@@ -53,3 +61,7 @@ for(var index=0; index<tableHtmlCollection.length; index++){
         }
     });
 }
+
+a.classList.add('active');
+
+usernameInput.focus();
