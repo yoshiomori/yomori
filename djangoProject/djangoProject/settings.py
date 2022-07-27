@@ -125,6 +125,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
     'nodeProject/node_modules/bootstrap/dist',
+    'nodeProject/node_modules/bootstrap-icons',
     os.path.join(BASE_DIR, 'static')
 ]
 

@@ -8,5 +8,7 @@ body.classList.add('h-100');
 body.classList.add('bg-dark');
 body.classList.add('text-white');
 body.classList.add('text-center');
+body.classList.add('d-flex');
+body.classList.add('flex-column');
 
 a.classList.add('active');

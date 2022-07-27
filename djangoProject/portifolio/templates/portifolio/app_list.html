@@ -6,25 +6,23 @@
 <link href="{% static 'css/base.css' %}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    {% include "menubar.html" %}
+{% include "menubar.html" %}
 
-    <main class="px-3">
-        <h1>Bem vindo,</h1>
-        <p class="lead">essa é a página pessoal do Yoshio Mori, aqui você já sai ganhando, eu apresento a você:</p>
-        <p class="lead">
-            {% for app in app_list %}
-            <a href="{% url app.url_name %}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">{{ app.name }}</a>
-            {% endfor %}
-        </p>
-        <p class="lead">Venha conversar comigo, meu email é mundoemlinhareta@gmail.com</p>
-    </main>
+<main class="px-3 cover-container mx-auto">
+    <h1>Bem vindo,</h1>
+    <p class="lead">essa é a página pessoal do Yoshio Mori, aqui você já sai ganhando, eu apresento a você:</p>
+    <p class="lead">
+        {% for app in app_list %}
+        <a href="{% url app.url_name %}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">{{ app.name }}</a>
+        {% endfor %}
+    </p>
+    <p class="lead">Venha conversar comigo, meu email é mundoemlinhareta@gmail.com</p>
+</main>
 
-    <footer class="mt-auto text-white-50">
-        <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a
-                href="https://twitter.com/mdo" class="text-white">@mdo</a> & <a
-                href="https://twitter.com/YoshioMori9" class="text-white">@YoshioMori9</a>.</p>
-    </footer>
-</div>
+<footer class="mt-auto text-white-50 cover-container mx-auto">
+    <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a
+            href="https://twitter.com/mdo" class="text-white">@mdo</a> & <a
+            href="https://twitter.com/YoshioMori9" class="text-white">@YoshioMori9</a>.</p>
+</footer>
 <script src="{% static 'portifolio/js/core.js' %}"></script>
 {% endblock %}
