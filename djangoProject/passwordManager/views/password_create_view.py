@@ -2,9 +2,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
 from passwordManager.models import Password
+from passwordManager.views.commons.password_field_view_mixin import PasswordFieldViewMixin
 
 
-class PasswordCreateView(LoginRequiredMixin, generic.CreateView):
+class PasswordCreateView(LoginRequiredMixin, PasswordFieldViewMixin, generic.CreateView):
     model = Password
     fields = ['password', 'username', 'description', 'title']
     title = 'New Password'
