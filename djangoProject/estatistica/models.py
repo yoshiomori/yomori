@@ -35,9 +35,6 @@ class ValorQualitativoOrdinal(models.Model):
     valor = models.CharField(max_length=255)
     ordem = models.IntegerField()
 
-    class Meta:
-        ordering = ['ordem']
-
 
 class ValorQuantitativoDiscreto(models.Model):
     variavel = models.ForeignKey(VariavelQuantitativoDiscreto, models.PROTECT)
@@ -47,3 +44,20 @@ class ValorQuantitativoDiscreto(models.Model):
 class ValorQuantitativoContinuo(models.Model):
     variavel = models.ForeignKey(VariavelQuantitativoContinuo, models.PROTECT)
     valor = models.DecimalField(max_digits=64, decimal_places=30)
+
+
+class GraficoBarrasParaVariaveisQualitativas(models.Model):
+    """Gráfico de Barras Para Variáveis Qualitativas"""
+    valor = models.CharField(max_length=255)  # Valor da Variável Qualitativa
+    quantidade = models.PositiveIntegerField()
+
+    class Meta:
+        abstract = True
+
+
+class GraficoBarrasParaVariaveisQualitativasNominais(GraficoBarrasParaVariaveisQualitativas):
+    variavel = models.ForeignKey(VariavelQualitativoNominal, on_delete=models.PROTECT)
+
+
+class GraficoBarrasParaVariaveisQualitativasOrdinais(GraficoBarrasParaVariaveisQualitativas):
+    variavel = models.ForeignKey(VariavelQualitativoOrdinal, on_delete=models.PROTECT)
