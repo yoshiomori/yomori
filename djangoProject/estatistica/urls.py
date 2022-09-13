@@ -19,5 +19,9 @@ from estatistica import views
 
 urlpatterns = [
     path('grafico/barras/', views.GraficoBarrasView.as_view()),
-    path('grafico/barras/js/', views.GraficoBarrasJSView.as_view(), name='grafico-barras-js'),
+    path(
+        'grafico/barras/js/nominal/',
+        views.GraficoBarrasQualitativaNominalJSView.as_view(),
+        name='grafico-barras-js-nominal'
+    ),
 ]
