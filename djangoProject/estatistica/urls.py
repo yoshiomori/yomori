@@ -18,10 +18,16 @@ from django.urls import path
 from estatistica import views
 
 urlpatterns = [
-    path('grafico/barras/', views.GraficoBarrasView.as_view()),
+    path('grafico/barras/nominal/', views.GraficoBarrasNominalView.as_view()),
+    path('grafico/barras/ordinal/', views.GraficoBarrasOrdinalView.as_view()),
     path(
         'grafico/barras/js/nominal/',
         views.GraficoBarrasQualitativaNominalJSView.as_view(),
         name='grafico-barras-js-nominal'
+    ),
+    path(
+        'grafico/barras/js/ordinal/',
+        views.GraficoBarrasQualitativaOrdinalJSView.as_view(),
+        name='grafico-barras-js-ordinal'
     ),
 ]

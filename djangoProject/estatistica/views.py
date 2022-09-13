@@ -8,6 +8,16 @@ class GraficoBarrasView(generic.TemplateView):
     template_name = 'estatistica/grafico_barras.html'
 
 
+class GraficoBarrasNominalView(generic.TemplateView):
+    template_name = 'estatistica/grafico_barras.html'
+    url = 'grafico-barras-js-nominal'
+
+
+class GraficoBarrasOrdinalView(generic.TemplateView):
+    template_name = 'estatistica/grafico_barras.html'
+    url = 'grafico-barras-js-ordinal'
+
+
 class GraficoBarrasJSView(generic.TemplateView):
     template_name = 'estatistica/grafico_barras.js'
 
@@ -28,4 +38,5 @@ class GraficoBarrasQualitativaOrdinalJSView(GraficoBarrasJSView):
     def get_context_data(self, **kwargs):
         manager = getattr(GraficoBarrasParaVariaveisQualitativasOrdinais, 'objects')
         queryset = manager.filter(variavel_id=self.request.GET.get('variavel_id'))
+        queryset = queryset.order_by('ordem')
         return super().get_context_data(queryset=queryset, **kwargs)

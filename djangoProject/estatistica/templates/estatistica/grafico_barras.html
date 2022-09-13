@@ -7,6 +7,6 @@
 <body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <canvas id="myChart"></canvas>
-<script src="{% url 'grafico-barras-js-nominal' %}?{{ view.request.GET.urlencode }}"></script>
+<script src="{% url view.url %}?{{ view.request.GET.urlencode }}"></script>
 </body>
 </html>
