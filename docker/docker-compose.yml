@@ -51,3 +51,68 @@ services:
       - ../static:/static
     depends_on:
       - django
+  celery_beat:
+    build:
+      python
+    command:
+      - bash
+      - -c
+      - "python -m venv appenv \
+         && source appenv/bin/activate \
+         && /app/appenv/bin/python -m pip install --upgrade pip \
+         && pip install -r requirements.txt \
+         && rm -f celerybeat-schedule \
+         && pip install -r requirements.txt \
+         && cd djangoProject \
+         && celery -A djangoProject beat"
+    environment:
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DATABASE_NAME=${DJANGO_DATABASE_NAME}
+      - DATABASE_USER=${DJANGO_DATABASE_USER}
+      - DATABASE_PASSWORD=${DJANGO_DATABASE_PASSWORD}
+      - DATABASE_HOST=${DJANGO_DATABASE_HOST}
+      - DATABASE_PORT=${DJANGO_DATABASE_PORT}
+      - CACHE_LOCATION=${DJANGO_CACHE_LOCATION}
+      - EMAIL_HOST=${DJANGO_EMAIL_HOST}
+      - EMAIL_PORT=${DJANGO_EMAIL_PORT}
+      - EMAIL_HOST_USER=${DJANGO_EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${DJANGO_EMAIL_HOST_PASSWORD}
+      - EMAIL_USE_TLS=${DJANGO_EMAIL_USE_TLS}
+    volumes:
+      - ..:/app
+    working_dir: /app
+    depends_on:
+      - redis
+      - django
+  celery_worker:
+    build:
+      python
+    command:
+      - bash
+      - -c
+      - "python -m venv appenv \
+         && source appenv/bin/activate \
+         && /app/appenv/bin/python -m pip install --upgrade pip \
+         && pip install -r requirements.txt \
+         && cd djangoProject \
+         && celery -A djangoProject worker"
+    environment:
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DATABASE_NAME=${DJANGO_DATABASE_NAME}
+      - DATABASE_USER=${DJANGO_DATABASE_USER}
+      - DATABASE_PASSWORD=${DJANGO_DATABASE_PASSWORD}
+      - DATABASE_HOST=${DJANGO_DATABASE_HOST}
+      - DATABASE_PORT=${DJANGO_DATABASE_PORT}
+      - CACHE_LOCATION=${DJANGO_CACHE_LOCATION}
+      - EMAIL_HOST=${DJANGO_EMAIL_HOST}
+      - EMAIL_PORT=${DJANGO_EMAIL_PORT}
+      - EMAIL_HOST_USER=${DJANGO_EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${DJANGO_EMAIL_HOST_PASSWORD}
+      - EMAIL_USE_TLS=${DJANGO_EMAIL_USE_TLS}
+    volumes:
+      - ..:/app
+    working_dir: /app
+    depends_on:
+      - redis
+      - django
+      - celery_beat
